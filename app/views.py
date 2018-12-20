@@ -95,7 +95,7 @@ def form_page(request):
             elif request.POST.get('add_new') == 'true':
                 return redirect('/form_page?create='+request.GET.get('create'))
             else:
-                return redirect('/query='+request.GET.get('create'))
+                return redirect('/?query='+request.GET.get('create'))
     else:           
         return render(request, 'app/form_page.html',{
         'form' : form,
@@ -105,4 +105,7 @@ def form_page(request):
 #action = request.GET.get('q').lower()
 #tut tol'ko otobrazhaem vse posti iz lichnogo dnevnika
 # Create your views here.
-
+"""
+n7ey233
+vlad911as123
+"""
