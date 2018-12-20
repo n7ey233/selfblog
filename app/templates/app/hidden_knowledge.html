@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="dropdown pull-right" style="margin-top: 20px;">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+          Создать
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'hidden_manage'%}?object=knowledge_type">Тип</a></li>
+              <li><a class="dropdown-item" href="{% url 'hidden_manage'%}?object=knowledge_object{%if azx%}&init={{azx.pk}}{%endif%}">Объект</a></li>
+          </ul>
+    </div>
+    {%if azx%}<a href="{% url 'hidden_manage'%}?object=knowledge_type&que={{azx.pk}}">{%endif%}
+	<h3>{%if azx%}{{azx.title}}</a>{%else%}Все знания{%endif%}</h3>
+    <ol class="breadcrumb">
+      <li><a href="{% url 'hidden_main'%}">main</a></li>
+      {%if azx%}<li><a href="{% url 'hidden_knowledge'%}">Знания</a></li>
+      <li class="active">{{azx.title}}</li>
+      {%else%}
+      <li class="active">Знания</li>
+      {%endif%}
+    </ol>
+	<p>| <a href="{% url 'hidden_knowledge'%}">Все</a> | {%for obj in type_list%} <a href="{% url 'hidden_knowledge'%}?q={{obj.pk}}">{{obj.title}}</a> |{%endfor%}</p>
+	<hr>
+	{%for obj in obj_list%}
+        <li><a href="{% url 'hidden_knowledge_view'%}?q={{obj.pk}}">{{obj.title}} {{obj.name}}</a></li>
+	{%endfor%}  
+
+</div>
+{%endblock%}

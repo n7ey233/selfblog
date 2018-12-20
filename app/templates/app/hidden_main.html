@@ -1,0 +1,82 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<!-- main -->
+<div class="container-fluid">
+    <h3>Скрытое</h3>
+    <hr>
+    <h4>Основа:</h4>
+    <li><a href="{% url 'hidden_knowledge'%}">Знания</a></li>
+    <li><a href="{% url 'hidden_finance'%}">Финансы</a></li> 
+    <li><a href="{% url 'hidden_task'%}">Задачи</a></li>
+    <li><a href="{% url 'hidden_transactions'%}">Транзакции</a></li>
+    <hr>
+    <h4>Прочее:</h4>
+    <li><a href="{% url 'hidden_utils'%}?q=calc">Калькулятор цен</a></li>
+    
+    
+</div>
+
+
+{% endblock %}
+<!-- finance -->
+<div class="container">
+    <h3>Все finance </h3>
+    <h4>Баланс: 12312,213</h4>
+    <h4>Предполагаемые:</h4>
+    <h4>Учитывая предполагаемые:</h4>
+    <p>| <a href="#">Все</a> | <a href="#">касса 2</a> | <a href="#">касса 3</a> | <a href="#">касса 4</a> |</p>
+    
+    если выбраны все, то отображать все приходы\расходы\перемещения
+    если определенная, то отображать приходы\итд для определенной 
+    сортируются по дате создания
+    
+    расходы\придохы и т.д создаются через модальное окно!!
+                    дата(по ней сортируем), касса(в которой производятся манипуляции), вид(приход\расходы\перемещение), цель(на что\в какую кассу\откуда), на списание, осталось списать (если списано == на списание  в списании: принтф("проведено").
+                    сортируем po date ->> и опционально po sostoyaniyu provedeniya
+    <li><a href="#">17.8.2017 касса 2 Приход: зарплата, 200, 0 </a></li> 
+    <li><a href="#">17.8.2017 касса 2 Расход: деньги на телефон, 300, 200 </a></li> 
+    <li><a href="#">17.8.2017 касса 2 Перемещение: касса3, 450, 450(проведено) </a></li>    
+</div>
+
+<!-- tasks -->
+<div class="container">
+    <h3>tasks</h3>
+    <h4>Основа:</h4>
+    <li><a href="#">cash</a></li> 
+    <li><a href="#">tasks</a></li>
+    <li><a href="#">knowledge</a></li>
+    
+    <h4>Утиль:</h4>
+    <li><a href="#">Калькулятор цен</a></li>
+    
+    
+</div>
+
+<!-- knowledge -->
+<div class="container">
+    <h3>knowledge</h3>
+    <h4>Основа:</h4>
+    <li><a href="#">cash</a></li> 
+    <li><a href="#">tasks</a></li>
+    <li><a href="#">knowledge</a></li>
+    
+    <h4>Утиль:</h4>
+    <li><a href="#">Калькулятор цен</a></li>
+    
+    
+</div>
+
+<!-- util -->
+<div class="container">
+    <h3>util</h3>
+    <h4>Основа:</h4>
+    <li><a href="#">cash</a></li> 
+    <li><a href="#">tasks</a></li>
+    <li><a href="#">knowledge</a></li>
+    
+    <h4>Утиль:</h4>
+    <li><a href="#">Калькулятор цен</a></li>
+    
+    
+</div>

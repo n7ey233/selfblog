@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+{% block content %}
+{%if page == 'main'%}
+<h3>{{page_name}}</h3>
+    <li><a href="/?query=action">Действия</a></li>
+    <li><a href="/?query=purchase">Покупки</a></li>
+    <li><a href="/?query=knowledge">Знания</a></li>
+    <li><a href="/?query=tracking_number">Номера отслеживания</a></li>
+{%else%}
+    <br>
+    <li><a href="/">main</a></li>
+    <hr>
+    <div class="btn-group pull-right">
+        <a href="{% url 'form_page' %}?create={{page}}" class="save btn btn-default"  role="button" aria-pressed="true">{{button_name}}</a> 
+    </div>
+    <h3>{{page_name}}</h3>
+    {%if obj_list%}
+        {%for i in obj_list%}
+            {%if i.finished == True%}<del>{%endif%}
+            <li><a href="{% url 'form_page' %}?create={{page}}&id={{i.pk}}">{{i}}</a></li>
+            {%if i.finished == True%}</del>{%endif%}
+        {%endfor%}
+    {%else%}
+        None
+    {%endif%}
+{%endif%}
+{%endblock%}

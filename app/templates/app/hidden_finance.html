@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="dropdown pull-right" style="margin-top: 20px;">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+          Создать
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'hidden_manage'%}?object=finance_type">Тип</a></li>
+              <li><a class="dropdown-item" href="{% url 'hidden_manage'%}?object=finance_object{%if azx%}&init={{azx.pk}}{%endif%}">Объект</a></li>
+          </ul>
+    </div>
+    {%if azx%}<a href="{% url 'hidden_manage'%}?object=finance_type&que={{azx.pk}}">{%endif%}
+	<h3>{%if azx%}{{azx.title}}</a>{%else%}Все финансы{%endif%}</h3>
+    <ol class="breadcrumb">
+      <li><a href="{% url 'hidden_main'%}">main</a></li>
+      {%if azx%}<li><a href="{% url 'hidden_finance'%}">Финансы</a></li>
+      <li class="active">{{azx.title}}</li>
+      {%else%}
+      <li class="active">Финансы</li>
+      {%endif%}
+    </ol>
+    <h4>Баланс: {%if azx%}{{azx.cash1}}{%else%}{{xyz}}{%endif%}</h4>
+    {%if azx%}<h4>Цель: {{azx.cash2}}</h4>{%endif%}
+    {%if azx%}<h4>Осталось: {{azx.cash3}}</h4>{%endif%}
+	<p>| <a href="{% url 'hidden_finance'%}">Все</a> | {%for obj in type_list%} <a href="{% url 'hidden_finance'%}?q={{obj.pk}}">{{obj.title}}</a> |{%endfor%}</p>
+	<hr>
+	{%for obj in obj_list%}
+        <li><a href="{% url 'hidden_finance_view'%}?q={{obj.pk}}">{{obj.created_date|date:"SHORT_DATE_FORMAT"}} {{obj.return_type}} {{obj.type}} ||{%if obj.finance_type_recieve %}{{obj.finance_type_recieve}}{%else%}{{obj.title}}{%endif%}|| {{obj.cash1}}</a></li>
+	{%endfor%}  
+
+</div>
+{%endblock%}

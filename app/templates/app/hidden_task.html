@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="dropdown pull-right" style="margin-top: 20px;">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+          Создать
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'hidden_manage'%}?object=task_type">Тип</a></li>
+              <li><a class="dropdown-item" href="{% url 'hidden_manage'%}?object=task_object{%if azx%}&init={{azx.pk}}{%endif%}">Объект</a></li>
+          </ul>
+    </div>
+    {%if azx%}<a href="{% url 'hidden_manage'%}?object=task_type&que={{azx.pk}}">{%endif%}
+	<h3>{%if azx%}{{azx.title}}</a>{%else%}Все задачи{%endif%}</h3>
+    <ol class="breadcrumb">
+      <li><a href="{% url 'hidden_main'%}">main</a></li>
+      {%if azx%}<li><a href="{% url 'hidden_task'%}">Задачи</a></li>
+      <li class="active">{{azx.title}}</li>
+      {%else%}
+      <li class="active">Задачи</li>
+      {%endif%}
+    </ol>
+	<p>| <a href="{% url 'hidden_task'%}">Все</a> | {%for obj in type_list%} <a href="{% url 'hidden_task'%}?q={{obj.pk}}">{{obj.title}}</a> |{%endfor%}</p>
+	<hr>
+	{%for obj in obj_list%}
+        {%if obj.task_finished == True%}<del>{%endif%}<li><a href="{% url 'hidden_task_view'%}?q={{obj.pk}}">{{obj.created_date|date:"SHORT_DATE_FORMAT"}}: {{obj.title}}</a></li>{%if obj.task_finished == True%}</del>{%endif%}
+	{%endfor%}  
+
+</div>
+{%endblock%}

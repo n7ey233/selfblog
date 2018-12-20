@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="btn-group pull-right" style="margin-top: 20px;">
+        <a href="{% url 'hidden_manage' %}?que={{object.pk}}&object=knowledge_object" class="save btn btn-default" role="button" aria-pressed="true">Редактировать</a> 
+    </div> 
+    <h3>{{object.title}} {{object.name}}</h3>
+    <ol class="breadcrumb">
+      <li><a href="{% url 'hidden_main'%}">main</a></li>
+      <li><a href="{% url 'hidden_knowledge'%}">Знания</a></li>
+      <li><a href="{% url 'hidden_knowledge'%}?q={{object.type.pk}}">{{object.type}}</a></li>
+      <li class="active">{{object.title}}</li>
+    </ol>
+    <hr>
+    <li>Вид: {{object.type}}</li>
+    <li>Название: {{object.title}} {{object.name}}</li>
+    <li>Дата создания: {{object.created_date}}</li>
+    <li>Дата истечения: {{object.expire_date}}</li>
+    <li>Ссылка: {{object.photo_link|urlizetrunc:128}}</li>
+    <li>Статус: {%if object.knowledge_finished is True %}Сделано{%else%}Выполняется{%endif%}</li>
+    <h4>Текст:</h4>
+    <p>{{object.text|linebreaks}}</p>
+    <hr>
+    <h4>Создано с использованием:</h4>
+    {%for obj in object.created_with.all%}{%if obj.knowledge_finished is True %}<del>{%endif%}<li><a href="{% url 'hidden_knowledge_view'%}?q={{obj.pk}}">{{obj.title}} {{obj.name}}</a></li>{%if obj.knowledge_finished is True %}</del>{%endif%}{%endfor%}
+</div>
+{%endblock%}

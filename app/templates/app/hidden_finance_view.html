@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="btn-group pull-right" style="margin-top: 20px;">
+        <a href="{% url 'hidden_manage' %}?que={{object.pk}}&object=finance_object" class="save btn btn-default" role="button" aria-pressed="true">Редактировать</a> 
+    </div> 
+    <h3>{{object.finance_type}}</h3>
+    <ol class="breadcrumb">
+      <li><a href="{% url 'hidden_main'%}">main</a></li>
+      <li><a href="{% url 'hidden_finance'%}">Задачи</a></li>
+      <li><a href="{% url 'hidden_finance'%}?q={{object.type.pk}}">{{object.type}}</a></li>
+      <li class="active">{{object.finance_type}}</li>
+    </ol>
+    <hr>
+    <li>Дата создания: {{object.created_date}}</li>
+    <li>Вид: {{object.type}}</li>
+    <li>Тип: {{object.finance_type}}</li>
+    <li>Название: {%if object.finance_type_recieve%}{{object.finance_type_recieve}}{%else%}{{object.title}}{%endif%}</li>
+    <li>Сумма: {{object.cash1}}</li>
+    <h4>Текст:</h4>
+    <p>{{object.text|linebreaks}}</p>
+</div>
+{%endblock%}

@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <h3>transactions</h3>
+    <form method="GET" class="form-inline">
+        <div class="form-group">
+            <input type="hidden" name="type" value="name">
+            <input type="text" placeholder="Наименование" name="search_product" id="search_product_article" class="form-control" value = ''>
+            <button type="submit" class="btn btn-default my-1">Поиск</button>
+        </div>
+    </form>
+    {%for obj in obj_list%}
+    <li><a href="{% url 'hidden_transaction_view'%}?q={{obj.pk}}">{{obj.created_date|date:"SHORT_DATE_FORMAT"}}: {{obj.appl}} - {{obj.cash}}</a></li>
+    {%endfor%}
+</div>
+{%endblock%}

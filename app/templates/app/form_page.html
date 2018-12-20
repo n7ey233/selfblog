@@ -1,0 +1,20 @@
+{% extends 'app/base.html' %}
+{% block content %}
+    <br>
+    <li><a href="/">main</a></li>
+    <li><a href="/?query={{request.GET.create}}">Назад</a></li>
+    <hr>
+    <form method="POST" class="post-form">
+      {%if page_title_prefix != 'Создание'%}<button type="submit" name="deleteit" value="true" class="save btn btn-danger pull-right">Удалить</button>{%endif%}
+    <h3>{{page_title_prefix}}: {{page_title}}{%if page_title_prefix != 'Создание'%} - {{form.instance}}{%endif%}</h3> 
+    <hr>
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <hr/>
+        <button type="submit" class="save btn btn-default pull-right">Сохранить</button>
+        <button type="submit" name="continute" value="true" class="save btn btn-default pull-right">Сохранить и продолжить редактирование</button>
+        
+        <button type="submit" name="add_new" value="true" class="save btn btn-default pull-right">Сохранить и добавить ещё</button>
+    </form>
+{%endblock%}

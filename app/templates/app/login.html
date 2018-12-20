@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Вход</title>
+    </head>
+
+    <body>
+        <h3>Вход</h3>
+
+        <form id="login_form" method="post" action="/9841543923/dengji">
+            {% csrf_token %}
+            Логин:<br> <input type="text" name="username" value="" size="50" />
+            <br />
+            Пароль:<br> <input type="password" name="password" value="" size="50" />
+            <br />
+
+            <input type="submit" value="Войти" />
+        </form>
+
+    </body>
+</html>

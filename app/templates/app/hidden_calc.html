@@ -1,0 +1,71 @@
+
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id="containermain" class="container-fluid">
+	<hr>
+	<div class="col-xs-12" style="padding-left: 0px;padding-right: 0px;">
+		<label for="id_title">Минимальная цена:</label>
+		<input id="minprice" class="form-control" type="number" step="0.01">
+	</div>
+
+	<div class="row" style="padding-left: 15px;padding-right: 15px;">
+	<div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;">
+		<label for="id_title">Процент розница:</label>
+		<input id="modifroznica" class="form-control" value="100" type="number" step="0.01">
+	</div>
+	<div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;">
+		<label for="id_title">Процент опт:</label>
+		<input id="modifopt" class="form-control" value="-10" type="number" step="0.01">
+	</div>
+	</div>
+	<div class="row" style="padding-left: 15px;padding-right: 15px;">
+    <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;">
+		<label for="id_title">Количество:</label>
+		<input id="amount" class="form-control" type="number" step="0.01">
+	</div>
+	<div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;">
+		<label for="id_title">Цена общая:</label>
+		<input id="totalprice" class="form-control" type="number" step="0.01">
+	</div>
+	</div>
+	<div class="row" style="padding-left: 15px;padding-right: 15px;">
+	<div class="col-xs-12" style="padding-left: 0px;padding-right: 0px;">
+		<label for="id_title">Цена за единицу:</label>
+		<input id="oneprice" class="form-control" type="number" step="0.01">
+	</div>
+	</div>
+    <label for="id_title">Вид:</label>
+	<select id="selecttype" class="form-control">
+		<option data-roznica = "100" data-opt = "-10">Все|100\-10</option>
+        <option data-roznica = "60" data-opt = "44">Автохимия|60\44</option>
+        <option data-roznica = "60" data-opt = "-10">Антифриз|тосол|60\-10</option>
+        <option data-roznica = "50" data-opt = "40">Даласи|50\40</option>
+        <option data-roznica = "60" data-opt = "-10">Инструменты|60\-10</option>
+        <option data-roznica = "30" data-opt = "-10">Масло|30\-10</option>
+        <option data-roznica = "60" data-opt = "-10">Метал рамка номера|60\-10</option>
+		<option data-roznica = "100" data-opt = "-30">Полеуретан|100\-30|</option>
+        <option data-roznica = "100" data-opt = "-30">Пыльники стойки\FB\RB|100\-30 </option>
+        <option data-roznica = "100" data-opt = "-30">Ремень р\к|100\-30</option>
+        <option data-roznica = "100" data-opt = "-30" data-min_price = "200">Сальники|100\-30</option>
+		<option data-roznica = "100" data-opt = "-30">Свеча|100\-30</option>
+        <option data-roznica = "100" data-opt = "-30">Термостаты|100\-30|</option>
+        <option data-roznica = "100" data-opt = "-30">Фильтр т\м\в\с\а|100\-30|</option>
+        <option data-roznica = "100" data-opt = "-30">CTR|100\-30</option>			
+	</select>
+    <div class="row" style="padding-left: 15px;padding-right: 15px;">
+        <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;">
+            <label for="id_title">Цена розница:</label>
+            <input id="rozniceprice" class="form-control" type="number" step="0.01">
+        </div>
+        <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;">
+            <label for="id_title">Цена опт:</label>
+            <input id="optprice" class="form-control" type="number" step="0.01">
+        </div>
+	</div>
+
+</div>
+{%endblock%}
+{% block scripts %}
+<script src="{% static 'js/calc.js' %}"></script>
+{% endblock %}

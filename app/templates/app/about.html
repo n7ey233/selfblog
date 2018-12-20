@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container-fluid">
+	<h3>О себе</h3>
+	<hr>
+
+        {{object.text}}
+	{% if user.is_staff or user.is_superuser %}
+	<p><a href="{% url 'hidden_manage'%}?object=about_text">Редактировать</a></p>
+	{%endif%}
+</div>
+{%endblock%}
