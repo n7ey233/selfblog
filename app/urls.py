@@ -7,6 +7,7 @@ urlpatterns =[
     #main^ main\about
     url(r'^$', views.main, name='main'),
     url(r'^form_page$', views.form_page, name='form_page'),
+    url(r'^automaximum_notif$', views.automaximum_notif, name='automaximum_notif'),
     #sozdaniye abonenta
     #url(r'^abonent/create$', views.abonent_create, name='abonent_create'),
     #prosmotr

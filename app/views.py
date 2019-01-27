@@ -1,8 +1,19 @@
 from django.shortcuts import render, redirect
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from .models import *
 from .forms import *
+import requests
 
+def send_notification_telegram(text):
+    telegram_token = '700264978:AAG6PdQSBamU5nREeT8c07fUzoz5EzNp6Pg' #token telegi
+    #moi id telegi '405347178'
+    #id telegi antona '548383851'
+    #id gruppi '-384637816'
+    #chat_id = '405347178' #moy id v telege dlya otpravki
+    chat_id = '405347178' #id gruppi v telege dlya otpravki
+    url = "https://api.telegram.org/bot"+telegram_token+"/sendMessage"
+    data = {'chat_id': chat_id, 'text': text}
+    requests.get(url,headers={'Content-Type': 'application/json' }, json=data)
 
 def main(request):
     #post_list = post.objects.all().order_by('-created_date')
@@ -56,6 +67,7 @@ def form_page(request):
             object = action.objects.get(pk=request.GET.get('id'))
         page_title = 'Действие'
         form = actionForm(instance=object)
+        if object:form.fields["subcategory_of"].queryset = action.objects.all().exclude(pk=object.pk)
     elif request.GET.get('create') == 'purchase':
         if request.GET.get('id', '') != '':
             object = purchase.objects.get(pk=request.GET.get('id'))
@@ -103,9 +115,22 @@ def form_page(request):
         'page_title': page_title,
         })
 #action = request.GET.get('q').lower()
+
+def automaximum_notif(request):
+    if request.GET.get('subject', '') == 'msg_landing_page_automaximum':
+        text = "заявка на звонок: "+str(request.GET.get('query'))
+        send_notification_telegram(text)
+        return_dict = dict()
+        return_dict['status'] = 'success'
+        return_dict["len"] = 23
+        return JsonResponse(return_dict)
+    else:
+        return None
 #tut tol'ko otobrazhaem vse posti iz lichnogo dnevnika
 # Create your views here.
 """
 n7ey233
 vlad911as123
+
+0111naeb9896
 """

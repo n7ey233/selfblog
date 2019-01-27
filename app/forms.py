@@ -1,5 +1,7 @@
 from django import forms
 from .models import *
+
+
 class actionForm(forms.ModelForm):
     class Meta:
         model = action

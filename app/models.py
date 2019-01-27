@@ -5,9 +5,11 @@ class action(models.Model):
     created_date = models.DateTimeField(default=timezone.now, verbose_name='Дата подачи заявки')
     name = models.CharField(max_length=128, blank=False, verbose_name='Название')
     text = models.TextField(blank = True, verbose_name='Текст')
+    subcategory_of = models.ForeignKey("self", blank = True, null = True, on_delete=models.CASCADE, verbose_name='Подзадача от')
     finished = models.BooleanField(default = False, verbose_name='Выполнено')
+
     class Meta:
-        ordering = ['finished', '-created_date']
+        ordering = ['-created_date']
     def __str__(self):
         return self.name
 class purchase(models.Model):
