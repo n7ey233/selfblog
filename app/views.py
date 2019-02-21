@@ -11,13 +11,13 @@ def send_notification_telegram(text, bot_to_use=None):
     else:
         telegram_token = '700264978:AAG6PdQSBamU5nREeT8c07fUzoz5EzNp6Pg' #token telegi
         chat_id = '405347178'
-"""id teleg
-    http://n7ey233.pythonanywhere.com/automaximum_notif
-    #moi id telegi '405347178'
-    #id telegi antona '548383851'
-    #id gruppi '-384637816'
-    #chat_id = '405347178' #moy id v telege dlya otpravki
-"""
+    """id teleg
+        http://n7ey233.pythonanywhere.com/automaximum_notif
+        #moi id telegi '405347178'
+        #id telegi antona '548383851'
+        #id gruppi '-384637816'
+        #chat_id = '405347178' #moy id v telege dlya otpravki
+    """
     url = "https://api.telegram.org/bot"+telegram_token+"/sendMessage"
     data = {'chat_id': chat_id, 'text': text}
     requests.get(url,headers={'Content-Type': 'application/json' }, json=data)
@@ -121,7 +121,8 @@ def form_page(request):
         })
 #action = request.GET.get('q').lower()
 def automaximum_notif(request):
-"""http://n7ey233.pythonanywhere.com/automaximum_notif"""
+    """http://n7ey233.pythonanywhere.com/automaximum_notif
+    """
     if request.GET.get('subject', '') == 'msg_landing_page_automaximum':
         text = "заявка на звонок: "+str(request.GET.get('query'))
         send_notification_telegram(text)
