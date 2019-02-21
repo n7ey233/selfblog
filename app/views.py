@@ -18,13 +18,9 @@ def send_notification_telegram(text, bot_to_use=None):
         #id gruppi '-384637816'
         #chat_id = '405347178' #moy id v telege dlya otpravki
     """
-    print(chat_id)
-    print(text)
     url = "https://api.telegram.org/bot"+telegram_token+"/sendMessage"
     data = {'chat_id': chat_id, 'text': text}
-    print(url)
-    print(data)
-    #requests.get(url,headers={'Content-Type': 'application/json' }, json=data)
+    requests.get(url,headers={'Content-Type': 'application/json' }, json=data)
 
 def main(request):
     #post_list = post.objects.all().order_by('-created_date')
@@ -134,7 +130,7 @@ def automaximum_notif(request):
         return_dict['status'] = 'success'
         return_dict["len"] = 23
         return JsonResponse(return_dict)
-    elif request.GET.get('subject', '') == 'vilki_line':
+    elif request.GET.get('subject', '') == 'vilki_line_test':
         #use_mebot - '786088675:AAHJl7-u6-PeujvDPw11OGYgkMMtdrJfBkc'
         #text - json
         text = request.GET.get('text', '')
