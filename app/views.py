@@ -4,13 +4,20 @@ from .models import *
 from .forms import *
 import requests
 
-def send_notification_telegram(text):
-    telegram_token = '700264978:AAG6PdQSBamU5nREeT8c07fUzoz5EzNp6Pg' #token telegi
+def send_notification_telegram(text, bot_to_use=None):
+    if bot_to_use == 'use_mebot':
+        telegram_token = '700264978:AAG6PdQSBamU5nREeT8c07fUzoz5EzNp6Pg' #token telegi
+        chat_id = '644654778'
+    else:
+        telegram_token = '700264978:AAG6PdQSBamU5nREeT8c07fUzoz5EzNp6Pg' #token telegi
+        chat_id = '405347178'
+"""id teleg
+    http://n7ey233.pythonanywhere.com/automaximum_notif
     #moi id telegi '405347178'
     #id telegi antona '548383851'
     #id gruppi '-384637816'
     #chat_id = '405347178' #moy id v telege dlya otpravki
-    chat_id = '405347178' #id gruppi v telege dlya otpravki
+"""
     url = "https://api.telegram.org/bot"+telegram_token+"/sendMessage"
     data = {'chat_id': chat_id, 'text': text}
     requests.get(url,headers={'Content-Type': 'application/json' }, json=data)
@@ -53,8 +60,6 @@ def main(request):
         'button_name': button_name,
         'page': page,
         })
-
-
 def form_page(request):
     form = None
     object = None
@@ -115,8 +120,8 @@ def form_page(request):
         'page_title': page_title,
         })
 #action = request.GET.get('q').lower()
-
 def automaximum_notif(request):
+"""http://n7ey233.pythonanywhere.com/automaximum_notif"""
     if request.GET.get('subject', '') == 'msg_landing_page_automaximum':
         text = "заявка на звонок: "+str(request.GET.get('query'))
         send_notification_telegram(text)
@@ -124,6 +129,14 @@ def automaximum_notif(request):
         return_dict['status'] = 'success'
         return_dict["len"] = 23
         return JsonResponse(return_dict)
+    elif request.GET.get('subject', '') == 'vilki_line':
+        #use_mebot - '786088675:AAHJl7-u6-PeujvDPw11OGYgkMMtdrJfBkc'
+        #text - json
+        text = request.GET.get('text', '')
+        print(text)
+        #send_notification_telegram(text, 'use_mebot')
+
+
     else:
         return None
 #tut tol'ko otobrazhaem vse posti iz lichnogo dnevnika
