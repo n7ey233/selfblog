@@ -135,7 +135,7 @@ def automaximum_notif(request):
         #text - json
         text = request.GET.get('text', '')
         print(text)
-        return HttpResponse("")
+        return JsonResponse(dict())
         #send_notification_telegram(text, 'use_mebot')
 
 
