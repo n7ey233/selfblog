@@ -6,7 +6,7 @@ import requests
 
 def send_notification_telegram(text, bot_to_use=None):
     if bot_to_use == 'use_mebot':
-        telegram_token = '700264978:AAG6PdQSBamU5nREeT8c07fUzoz5EzNp6Pg' #token telegi
+        telegram_token = '761637360:AAHRihv6wse2Tf4cySR2G3mxxQft5buVGTU' #token telegi
         chat_id = '644654778'
     else:
         telegram_token = '700264978:AAG6PdQSBamU5nREeT8c07fUzoz5EzNp6Pg' #token telegi
@@ -18,9 +18,13 @@ def send_notification_telegram(text, bot_to_use=None):
         #id gruppi '-384637816'
         #chat_id = '405347178' #moy id v telege dlya otpravki
     """
+    print(chat_id)
+    print(text)
     url = "https://api.telegram.org/bot"+telegram_token+"/sendMessage"
     data = {'chat_id': chat_id, 'text': text}
-    requests.get(url,headers={'Content-Type': 'application/json' }, json=data)
+    print(url)
+    print(data)
+    #requests.get(url,headers={'Content-Type': 'application/json' }, json=data)
 
 def main(request):
     #post_list = post.objects.all().order_by('-created_date')
@@ -135,10 +139,8 @@ def automaximum_notif(request):
         #text - json
         text = request.GET.get('text', '')
         print(text)
-        return JsonResponse(dict())
-        #send_notification_telegram(text, 'use_mebot')
-
-
+        send_notification_telegram(text, 'use_mebot')
+        return HttpResponse('')
     else:
         return None
 #tut tol'ko otobrazhaem vse posti iz lichnogo dnevnika
